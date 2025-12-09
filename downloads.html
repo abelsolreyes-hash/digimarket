@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Descargas — DigiMarket</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 24px; background:#f7f7f8; color:#222; }
+    header { margin-bottom: 18px; }
+    h1 { margin:0 0 8px 0; font-size:20px; }
+    #assets { background:#fff; border:1px solid #e3e3e3; padding:16px; border-radius:8px; }
+    .asset { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px dashed #eee; }
+    .asset:last-child { border-bottom: none; }
+    .asset a { color:#0366d6; text-decoration:none; font-weight:600; }
+    .meta { color:#666; font-size:13px; margin-left:12px; }
+    .left { display:flex; align-items:center; }
+    .btn { background:#0366d6; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; text-decoration:none; }
+    .note { margin-top:12px; color:#444; font-size:14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Descargas - DigiMarket</h1>
+    <p class="note">Aquí están los archivos APK subidos en la release. Haz clic en el nombre para descargar.</p>
+  </header>
+
+  <main>
+    <div id="assets">Cargando descargas...</div>
+  </main>
+
+  <script>
+    const owner = 'abelsolreyes-hash';
+    const repo = 'digimarket';
+    const tag = 'v1'; // Cambia a 'latest' si prefieres siempre la última release
+    const endpoint = `https://api.github.com/repos/${owner}/${repo}/releases/tags/${tag}`;
+
+    async function loadAssets() {
+      const container = document.getElementById('assets');
+      try {
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error('Error al obtener release: ' + res.status);
+        const release = await res.json();
+        const assets = release.assets || [];
+        if (assets.length === 0) {
+          container.textContent = 'No hay assets en esta release.';
+          return;
+        }
+        container.innerHTML = '';
+        assets.forEach(a => {
+          const url = a.browser_download_url || `https://github.com/${owner}/${repo}/releases/download/${release.tag_name}/${a.name}`;
+          const row = document.createElement('div');
+          row.className = 'asset';
+          const left = document.createElement('div');
+          left.className = 'left';
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = a.name;
+          const info = document.createElement('span');
+          info.className = 'meta';
+          info.textContent = ` ${Math.round(a.size / 1024)} KB`;
+          left.appendChild(link);
+          left.appendChild(info);
+
+          const right = document.createElement('div');
+          const dl = document.createElement('a');
+          dl.className = 'btn';
+          dl.href = url;
+          dl.target = '_blank';
+          dl.rel = 'noopener';
+          dl.textContent = 'Descargar';
+          right.appendChild(dl);
+
+          row.appendChild(left);
+          row.appendChild(right);
+          container.appendChild(row);
+        });
+      } catch (err) {
+        container.textContent = 'Error al cargar descargas: ' + err.message;
+        console.error(err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAssets);
+  </script>
+</body>
+</html>
