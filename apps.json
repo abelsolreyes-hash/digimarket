@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "nombre": "Tutorial",
+    "img": "imgs/log.png",
+    "desc": "Podras aprender sobre temas variados en la app.",
+    "archivo": "descargas/app-release.apk",
+    "version": "1.0.0",
+    "tam": "7 MB"
+  },
+  {
+    "id": 2,
+    "nombre": "Tutorial Movil",
+    "img": "imgs/icon2.png",
+    "desc": "Aplicación de tutorial para temas interesantes.",
+    "archivo": "descargas/app-release(1).apk",
+    "version": "1.0.0",
+    "tam": "7 MB"
+  },
+  {
+    "id": 3,
+    "nombre": "Tutorial App",
+    "img": "imgs/icon3.jpg",
+    "desc": "Aplicación de tutorial para temas interesantes.",
+    "archivo": "descargas/tutorial.apk",
+    "version": "1.0.0",
+    "tam": "17 MB"
+  },
+  {
+    "id": 4,
+    "nombre": "App Tutorial",
+    "img": "imgs/star.png",
+    "desc": "Aplicación de tutorial para temas interesantes.",
+    "archivo": "descargas/App tutorial.apk",
+    "version": "1.0.0",
+    "tam": "2 MB"
+  },
+  {
+    "id": 5,
+    "nombre": "Mi tutorial",
+    "img": "imgs/star.png",
+    "desc": "Aplicación de tutorial para temas interesantes.",
+    "archivo": "descargas/app-realease1.apk",
+    "version": "1.0.0",
+    "tam": "2 MB"
+  }
+]

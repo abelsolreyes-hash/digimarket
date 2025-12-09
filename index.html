@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Digi Market</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MANIFEST PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- COLORES DE LA APP -->
+  <meta name="theme-color" content="#2196f3">
+
+  <!-- ICONOS (puedes cambiarlos después) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand">Digi Market</h1>
+      <input id="search" class="search" type="text" placeholder="Buscar aplicaciones...">
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="app-list" class="grid"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© Digi Market</div>
+  </footer>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="script.js"></script>
+
+  <!-- REGISTRO DEL SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("✔ Service Worker registrado"))
+        .catch(err => console.log("Error SW:", err));
+    }
+  </script>
+
+</body>
+</html>
